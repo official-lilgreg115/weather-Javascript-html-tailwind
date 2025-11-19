@@ -1,5 +1,6 @@
+
 const apikey ="65e8a35488814d2a8ca203911251611";
-let days = 5;
+let days = 8;
 let weatherForCity = document.getElementById("citySelect");
 let btnOne = document.getElementById("submitCity");
 let temp= document.querySelector("#temp");
@@ -62,10 +63,47 @@ async function getforecast(cityName) {
         document.querySelector("#six-Pm-Forecast").textContent = data.forecast.forecastday[0].hour[18].temp_c + "°";
         document.querySelector("#six-Pm-Forecast-Icon").src= data.forecast.forecastday[0].hour[18].condition.icon;
 
+        // forecast for day current
+        // document.querySelector("#current-day").textContent= new Date(data.location.localtime).toLocaleDateString("en-US",{
+        //     weekday:"long"
+        // });
+        document.querySelector("#current-day-Img").src = data.forecast.forecastday[0].day.condition.icon;
+        document.querySelector("#current-day-weather").textContent =data.forecast.forecastday[0].day.condition.text;
+        document.querySelector("#current-day-temp").textContent =data.forecast.forecastday[0].day.mintemp_c + "°" ;
+
+        // forecast for day one
+        document.querySelector("#forecast-day-one").textContent= new Date(data.forecast.forecastday[1].date).toLocaleDateString("en-US",{
+            weekday:"long"
+        });
+        document.querySelector("#forecast-day-one-Img").src = data.forecast.forecastday[1].day.condition.icon;
+        document.querySelector("#forecast-day-one-weather").textContent =data.forecast.forecastday[1].day.condition.text;
+        document.querySelector("#forecast-day-one-temp").textContent =data.forecast.forecastday[1].day.mintemp_c + "°" ;
+        
+         // forecast for day two
+        document.querySelector("#forecast-day-two").textContent= new Date(data.forecast.forecastday[2].date).toLocaleDateString("en-US",{
+            weekday:"long"
+        });
+        document.querySelector("#forecast-day-two-Img").src = data.forecast.forecastday[2].day.condition.icon;
+        document.querySelector("#forecast-day-two-weather").textContent =data.forecast.forecastday[2].day.condition.text;
+        document.querySelector("#forecast-day-two-temp").textContent =data.forecast.forecastday[2].day.mintemp_c + "°" ;
+
+        // forecast for day three
+        document.querySelector("#forecast-day-three").textContent= new Date(data.forecast.forecastday[3].date).toLocaleDateString("en-US",{
+            weekday:"long"
+        });
+        document.querySelector("#forecast-day-three-Img").src = data.forecast.forecastday[3].day.condition.icon;
+        document.querySelector("#forecast-day-three-weather").textContent =data.forecast.forecastday[3].day.condition.text;
+        document.querySelector("#forecast-day-three-temp").textContent =data.forecast.forecastday[3].day.mintemp_c + "°" ;
     } catch (error) {
         console.log(error)
     }
 }
+//auto Accra when 
+window.addEventListener("load",function(){
+    getday("Accra");
+    getforecast("Accra");
+});
+
 btnOne.addEventListener("click",function(){
     selectedCity = weatherForCity.value;
     getday(selectedCity);
@@ -73,4 +111,6 @@ btnOne.addEventListener("click",function(){
     cityname.textContent=selectedCity;
     console.log(selectedCity);
 }
-)
+);
+
+
