@@ -32,6 +32,19 @@ async function getday(cityName) {
                 tempImage.src="imgs/snowflake-svgrepo-com.svg"
                 break;
         }
+
+        // real feel
+        document.querySelector("#real-feel").textContent = data.current.feelslike_c + "°";
+
+        // Humidity
+        document.querySelector("#Humidity").textContent = data.current.humidity;
+
+        // Wind
+        document.querySelector("#wind").textContent = data.current.wind_kph + " Km/h";
+
+        // Wind
+        document.querySelector("#uv-index").textContent = data.current.uv;
+        
     } catch (error) {
         console.log(error)
     }
@@ -94,6 +107,7 @@ async function getforecast(cityName) {
         document.querySelector("#forecast-day-three-Img").src = data.forecast.forecastday[3].day.condition.icon;
         document.querySelector("#forecast-day-three-weather").textContent =data.forecast.forecastday[3].day.condition.text;
         document.querySelector("#forecast-day-three-temp").textContent =data.forecast.forecastday[3].day.mintemp_c + "°" ;
+        
     } catch (error) {
         console.log(error)
     }
